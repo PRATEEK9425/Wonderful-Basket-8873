@@ -2,16 +2,18 @@
 import { Stack,Input,Box, Button ,Image} from "@chakra-ui/react"
 import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 const initial={
     email:"",
     password :""
 }
 export default  function Login(){
-const [formdata,setFormdata] = useState(initial)
-const [token,setToken] = useState("")
-
+const [formdata,setFormdata] = useState(initial);
+const [token,setToken] = useState("");
+const navigate = useNavigate()
 const handleChange=(e)=>{
 const {value,name} = e.target;
+
 setFormdata({...formdata,[name]:value})
 
 }
@@ -29,6 +31,7 @@ setToken(res.data.token)
 }
 if(token){
     alert("Success")
+    return navigate("/")
 }
 const {email,password} = formdata
 
